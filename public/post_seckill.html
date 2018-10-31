@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<button id="two" onclick="get_seckill()">get</button>
+<button id="one" onclick="post_seckill()">post</button>
+
+<body>
+
+</body>
+<script>
+    function get_seckill() {
+        $.get("/get_skill_quota", {}, function (result) {
+        });
+
+    }
+    //两个问题，1：循环发送请求超过6000会出现发送请求失败。2：服务器会出现写入延迟，导致名额出现超出。
+    function post_seckill() {
+        for (var i = 1; i <= 6000; i++) {
+            $.post('/add_skill', { 'uid': parseInt((Math.random()*10000).toFixed(0)) }, function (result) {
+            })
+        }
+
+    }
+
+</script>
+
+</html>
